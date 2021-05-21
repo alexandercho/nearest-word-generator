@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Locale;
+
 import java.util.Scanner;
 
 public class NearestWordGenerator {
@@ -16,33 +16,37 @@ public class NearestWordGenerator {
     public NearestWordGenerator() {
         this.dictionary = new HashSet<>();
     }
-    public void generateDictionary(String pathname) {
-        try {
-            File myObj = new File(pathname);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine().toLowerCase();
-                this.dictionary.add(data);
+    public Boolean generateDictionary(String pathname, Boolean isURL) {
+        if (isURL) {
+            try {
+                File myObj = new File(pathname);
+                Scanner myReader = new Scanner(myObj);
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine().toLowerCase();
+                    this.dictionary.add(data);
+                }
+                myReader.close();
+                return true;
+            } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+                return false;
             }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    public void useOnlineDictionary(String pathname) {
-        try {
-            URL url = new URL(pathname);
-            Scanner myReader = new Scanner(url.openStream());
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine().toLowerCase();
-                this.dictionary.add(data);
+        } else {
+            try {
+                URL url = new URL(pathname);
+                Scanner myReader = new Scanner(url.openStream());
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine().toLowerCase();
+                    this.dictionary.add(data);
+                }
+                myReader.close();
+                return true;
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+                return false;
             }
-            myReader.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
         }
     }
 

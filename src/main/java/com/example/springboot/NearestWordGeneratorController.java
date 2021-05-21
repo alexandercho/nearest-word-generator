@@ -12,7 +12,7 @@ public class NearestWordGeneratorController {
     public String index() {
         if (nwg == null) {
             this.nwg = new NearestWordGenerator();
-            this.nwg.generateDictionary("words.txt");
+            this.nwg.generateDictionary("words.txt", false);
         }
         return "Nearest Word Generator created with default dictionary";
     }
@@ -20,8 +20,8 @@ public class NearestWordGeneratorController {
     @PutMapping("/reformat")
     public String useNewDictionary(@RequestParam(value = "link") String link) {
         this.nwg = new NearestWordGenerator();
-        nwg.useOnlineDictionary(link);
-        return "New dictionary updated";
+        Boolean success = this.nwg.generateDictionary(link, true);
+        return success ? "New dictionary updated" : "Dictionary failed to load. Default dictionary was loaded instead";
     }
 
     @GetMapping("/generate")

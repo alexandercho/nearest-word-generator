@@ -7,14 +7,14 @@ public class NearestWordGeneratorTest {
     @Test
     public void stabilityTest(){
         NearestWordGenerator nwg = new NearestWordGenerator();
-        nwg.generateDictionary("words.txt");
+        nwg.generateDictionary("words.txt", false);
         assertTrue(nwg.isWord("care"));
         assertTrue(nwg.isWord("computer"));
     }
     @Test
     public void generateTest(){
         NearestWordGenerator nwg = new NearestWordGenerator();
-        nwg.generateDictionary("words.txt");
+        nwg.generateDictionary("words.txt", false);
         String[] test1 = nwg.generateWord("a", 1, 1);
         String[] test2 = nwg.generateWord("a", 3, 3);
         assertEquals("aa", test1[0]);
@@ -24,7 +24,8 @@ public class NearestWordGeneratorTest {
     @Test
     public void urlGenerateTest(){
         NearestWordGenerator nwg = new NearestWordGenerator();
-        nwg.useOnlineDictionary("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt");
+        nwg.generateDictionary("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt",
+                false);
         String[] test1 = nwg.generateWord("a", 1, 1);
         String[] test2 = nwg.generateWord("a", 3, 3);
         assertEquals("aa", test1[0]);

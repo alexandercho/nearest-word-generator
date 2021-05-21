@@ -1,4 +1,8 @@
 # nearest-word-generator
+
+## How to run
+### I have tested this API to run on Postman, but it will not run on any code that is dependant on response codes.
+
 ## Loading a new dictionary into memory
 <p>The dictionary can be updated via a PUT request at https://nearest-word-generator.herokuapp.com/reformat with the encoded URL for the <strong>link</strong> parameter. <br>
 

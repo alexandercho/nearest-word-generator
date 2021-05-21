@@ -14,7 +14,7 @@ public class NearestWordGeneratorTest {
     @Test
     public void generateTest(){
         NearestWordGenerator nwg = new NearestWordGenerator();
-        nwg.generateDictionary("words.txt", false);
+        nwg.generateDictionary("words.txt", true);
         String[] test1 = nwg.generateWord("a", 1, 1);
         String[] test2 = nwg.generateWord("a", 3, 3);
         assertEquals("aa", test1[0]);

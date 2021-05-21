@@ -10,7 +10,7 @@ An example would be: <br>
 https://nearest-word-generator.herokuapp.com/reformat?link=https%3A%2F%2Fraw.githubusercontent.com%2Fdwyl%2Fenglish-words%2Fmaster%2Fwords_alpha.txt</p>
 
 ## Generating nearest words
-<p>Generating the nearest words for a given parameters for <strong> word, delta, and number</strong> can be done by sending a get request to 
+<p>Generating the nearest words for a given parameters for <strong> word, delta, and number</strong> can be done by sending a GET request to 
 https://nearest-word-generator.herokuapp.com/generate
 
 An example would be: <br>

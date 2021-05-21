@@ -16,8 +16,8 @@ public class NearestWordGenerator {
     public NearestWordGenerator() {
         this.dictionary = new HashSet<>();
     }
-    public Boolean generateDictionary(String pathname, Boolean isURL) {
-        if (isURL) {
+    public Boolean generateDictionary(String pathname, Boolean isLocal) {
+        if (isLocal) {
             try {
                 File myObj = new File(pathname);
                 Scanner myReader = new Scanner(myObj);

@@ -1,8 +1,6 @@
 package com.example.springboot;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NearestWordGeneratorTest {
@@ -21,5 +19,15 @@ public class NearestWordGeneratorTest {
         String[] test2 = nwg.generateWord("a", 3, 3);
         assertEquals("aa", test1[0]);
         assertEquals("aaaa", test2[0]);
+    }
+
+    @Test
+    public void urlGenerateTest(){
+        NearestWordGenerator nwg = new NearestWordGenerator();
+        nwg.useOnlineDictionary("https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt");
+        String[] test1 = nwg.generateWord("a", 1, 1);
+        String[] test2 = nwg.generateWord("a", 3, 3);
+        assertEquals("aa", test1[0]);
+        assertEquals("baba", test2[0]);
     }
 }

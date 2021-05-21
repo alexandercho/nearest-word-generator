@@ -1,5 +1,7 @@
 package com.example.springboot;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.io.File;
@@ -24,6 +26,21 @@ public class NearestWordGenerator {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void useOnlineDictionary(String pathname) {
+        try {
+            URL url = new URL(pathname);
+            Scanner myReader = new Scanner(url.openStream());
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine().toLowerCase();
+                this.dictionary.add(data);
+            }
+            myReader.close();
+        } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }

@@ -62,7 +62,7 @@ public class NearestWordGenerator {
     }
 
     public String[] generateWord(String word, int delta, int number) {
-        ArrayList<String> output = new ArrayList<>(number);
+        String[] output = new String[number];
         HashSet<String> seen = new HashSet<>();
         seen.add(word);
         seen.add("");
@@ -80,15 +80,18 @@ public class NearestWordGenerator {
             }
             neighbors = newNeighbors;
         }
-
+        int count = 0;
         for (String nearestWord : neighbors) {
-            if (this.isWord(nearestWord)) {
-                output.add(nearestWord);
-            }
-            if (output.size() == number) {
+            if (count == number) {
                 break;
             }
+            if (this.isWord(nearestWord)) {
+                output[count] = nearestWord;
+                count++;
+            }
+
         }
-        return (String[]) output.toArray();
+
+        return output;
     }
 }

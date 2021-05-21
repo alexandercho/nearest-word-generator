@@ -9,15 +9,18 @@ public class NearestWordGeneratorController {
     NearestWordGenerator nwg;
     @RequestMapping("/")
     public String index() {
-        this.nwg = new NearestWordGenerator();
-        this.nwg.generateDictionary("word.txt");
+        if (nwg == null) {
+            this.nwg = new NearestWordGenerator();
+            this.nwg.generateDictionary("words.txt");
+        }
         return "Nearest Word Generator created with default dictionary";
     }
+
     @GetMapping("/generate")
     public String[] generateWords(@RequestParam(value = "word") String word,
-                                  @RequestParam(value = "delta") int delta,
-                                  @RequestParam(value = "number") int number) {
-
-        return nwg.generateWord(word, delta, number);
+                                  @RequestParam(value = "delta") String delta,
+                                  @RequestParam(value = "number") String number) {
+        //http://localhost:8080/generate?word=car&delta=1&number=1
+        return nwg.generateWord(word, Integer.parseInt(delta), Integer.parseInt(number));
     }
 }
